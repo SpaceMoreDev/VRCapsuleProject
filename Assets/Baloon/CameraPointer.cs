@@ -24,8 +24,16 @@ using UnityEngine;
 /// </summary>
 public class CameraPointer : MonoBehaviour
 {
+    Vector2 rotation = Vector2.zero;
+    public float sensitivity=0.5f;
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
+
+    void Start()
+    {
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;        
+    }
 
     /// <summary>
     /// Update is called once per frame.
@@ -34,6 +42,11 @@ public class CameraPointer : MonoBehaviour
     {
         // Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
         // at.
+
+        // rotation.y += Input.GetAxis("Mouse X");
+        // rotation.x += -Input.GetAxis("Mouse Y");
+        // transform.eulerAngles = (Vector2)rotation * sensitivity;
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
         {

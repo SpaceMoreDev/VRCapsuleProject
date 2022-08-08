@@ -218,6 +218,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -24.041, z: 0}
+--- !u!23 &301404984 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2982297549570535878, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
+  m_PrefabInstance: {fileID: 8080829278563025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &389255504
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,10 +249,10 @@ Light:
   m_GameObject: {fileID: 389255504}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 2
+  m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10
+  m_Intensity: 1.69
   m_Range: 20
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.802082
@@ -304,13 +309,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 389255504}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.8045807, z: 0}
+  m_LocalRotation: {x: 0.2991463, y: -0, z: -0, w: 0.95420724}
+  m_LocalPosition: {x: 0, y: 7.8045807, z: -15.78}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 34.813, y: 0, z: 0}
 --- !u!1 &450320776
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,6 +673,18 @@ PrefabInstance:
       propertyPath: text
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8080828875331635, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
+      propertyPath: _myRenderer
+      value: 
+      objectReference: {fileID: 301404984}
+    - target: {fileID: 8080828875331635, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
+      propertyPath: GazedAtMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: b41b39dd348676b4cb867179ca3a9835, type: 2}
+    - target: {fileID: 8080828875331635, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
+      propertyPath: InactiveMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 77e8c21eef3f5194685f752cf2fd628e, type: 2}
     - target: {fileID: 8080830260248376, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -756,6 +773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Treasure
       objectReference: {fileID: 0}
+    - target: {fileID: 2982297549570535878, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 77e8c21eef3f5194685f752cf2fd628e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
 --- !u!1001 &3216758452071828839

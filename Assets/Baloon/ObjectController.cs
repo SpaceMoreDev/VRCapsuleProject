@@ -28,7 +28,7 @@ public class ObjectController : MonoBehaviour
     /// The material to use when this object is inactive (not being gazed at).
     /// </summary>
     public Material InactiveMaterial;
-    public TMP_Text text;
+    // public TMP_Text text;
     /// <summary>
     /// The material to use when this object is active (gazed at).
     /// </summary>
@@ -37,12 +37,12 @@ public class ObjectController : MonoBehaviour
     // The objects are about 1 meter in radius, so the min/max target distance are
     // set so that the objects are always within the room (which is about 5 meters
     // across).
-    private const float _minObjectDistance = 1f;
-    private const float _maxObjectDistance = 2f;
+    private const float _minObjectDistance = 2f;
+    private const float _maxObjectDistance = 3f;
     private const float _minObjectHeight = 0.5f;
-    private const float _maxObjectHeight = 3.5f;
+    private const float _maxObjectHeight = 1.5f;
 
-    private Renderer _myRenderer;
+    public Renderer _myRenderer;
     private Vector3 _startingPosition;
 
     /// <summary>
@@ -51,7 +51,6 @@ public class ObjectController : MonoBehaviour
     public void Start()
     {
         _startingPosition = transform.parent.localPosition;
-        _myRenderer = GetComponent<Renderer>();
         SetMaterial(false);
     }
 
@@ -63,30 +62,15 @@ public class ObjectController : MonoBehaviour
     public void TeleportRandomly()
     {
 
-        float angle = Random.Range(-Mathf.PI, Mathf.PI);
+        float angle = Random.Range(-30, 30);
         float distance = Random.Range(_minObjectDistance, _maxObjectDistance);
         float height = Random.Range(_minObjectHeight, _maxObjectHeight);
 
-        Vector3 newPos = new Vector3(Mathf.Cos(angle) * distance, height,
+        Vector3 newPos = new Vector3(Mathf.Cos(angle), height,
                                      Mathf.Sin(angle) * distance);
 
         transform.localPosition = newPos;
         ct++;
-        text.text = "Score: " + ct;
-        //// Picks a random sibling, activates it and deactivates itself.
-        //int sibIdx = transform.GetSiblingIndex();
-        //int numSibs = transform.parent.childCount;
-        //sibIdx = (sibIdx + Random.Range(1, numSibs)) % numSibs;
-        //GameObject randomSib = transform.parent.GetChild(sibIdx).gameObject;
-
-        //// Computes new object's location.
-        //float angle = Random.Range(-Mathf.PI, Mathf.PI);
-        //float distance = Random.Range(_minObjectDistance, _maxObjectDistance);
-        //float height = Random.Range(_minObjectHeight, _maxObjectHeight);
-        //Vector3 newPos = new Vector3(Mathf.Cos(angle) * distance, height,
-        //                             Mathf.Sin(angle) * distance);
-
-        // Moves the parent to the new position (siblings relative distance from their parent is 0).
 
         SetMaterial(false);
     }

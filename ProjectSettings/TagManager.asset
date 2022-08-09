@@ -8,6 +8,7 @@ TagManager:
   - Bad
   - LookL
   - LookR
+  - door
   layers:
   - Default
   - TransparentFX

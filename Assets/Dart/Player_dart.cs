@@ -52,12 +52,16 @@ public class Player_dart : MonoBehaviour
                     ct += 1;
                     Debug.Log("good job!");
                 }
-                else
+                else if (hit.transform.gameObject.tag == "Bad")
                 {
                     Destroy(hit.transform.gameObject);
                     ct -= 1;
                     Debug.Log("ew what is that?");
 
+                }
+                else if (hit.transform.gameObject.tag == "door")
+                {
+                    hit.transform.SendMessage("OnPointerClick");
                 }
             }
         }

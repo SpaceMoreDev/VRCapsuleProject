@@ -20,7 +20,7 @@ public class Switcher_Door : MonoBehaviour
         SetMaterial(false);
     }
 
-    public void Goto_Scene()
+    public void OnPointerClick()
     {
          SceneManager.LoadScene(sceneNum);
     }

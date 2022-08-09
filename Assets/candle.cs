@@ -17,7 +17,7 @@ public class candle : MonoBehaviour
         //stuff
     }
 
-    public void Goto_Scene()
+    public void OnPointerClick()
     {
         var em = ps.emission;
         em.enabled = false;

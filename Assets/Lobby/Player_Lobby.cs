@@ -46,7 +46,7 @@ public class Player_Lobby : MonoBehaviour
 
         if (Google.XR.Cardboard.Api.IsTriggerPressed || Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
-            _gazedAtObject?.SendMessage("Goto_Scene"); 
+            _gazedAtObject?.SendMessage("OnPointerClick"); 
         }
     }
 }

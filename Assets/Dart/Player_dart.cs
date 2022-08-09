@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player_dart : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class Player_dart : MonoBehaviour
     public bool fall = false;
     public PostProcessVolume postProcessing;
     Vignette vignetteEffect;
+
+    public TMP_Text textbox;
     private Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
@@ -25,6 +29,7 @@ public class Player_dart : MonoBehaviour
         //Cursor.lockState = CursorLockMode.Locked;
     }
 
+    int ct=0;
     // Update is called once per frame
     void Update()
     {
@@ -44,15 +49,24 @@ public class Player_dart : MonoBehaviour
                 if (hit.transform.gameObject.tag == "Good")
                 {
                     Destroy(hit.transform.gameObject);
+                    ct += 1;
                     Debug.Log("good job!");
                 }
                 else
                 {
                     Destroy(hit.transform.gameObject);
+                    ct -= 1;
                     Debug.Log("ew what is that?");
 
                 }
             }
         }
+
+        if (ct < 0)
+        {
+            SceneManager.LoadScene(3);
+        }
+
+        textbox.text = "Score: " + ct;
     }
 }

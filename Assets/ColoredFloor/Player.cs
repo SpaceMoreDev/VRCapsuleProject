@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
 
         if (transform.parent.position.y < -4)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(3);
         }
 
         //rotation.y += Input.GetAxis("Mouse X");

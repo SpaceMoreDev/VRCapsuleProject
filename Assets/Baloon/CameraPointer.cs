@@ -18,7 +18,7 @@
 
 using System.Collections;
 using UnityEngine;
-
+using TMPro;
 /// <summary>
 /// Sends messages to gazed GameObject.
 /// </summary>
@@ -28,6 +28,8 @@ public class CameraPointer : MonoBehaviour
     public float sensitivity=0.5f;
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
+    public TMP_Text textbox;
+    public TMP_Text textboxTime;
 
     void Start()
     {
@@ -38,6 +40,7 @@ public class CameraPointer : MonoBehaviour
     /// <summary>
     /// Update is called once per frame.
     /// </summary>
+    int ct = 0;
     public void Update()
     {
         // Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
@@ -70,10 +73,15 @@ public class CameraPointer : MonoBehaviour
         if (Google.XR.Cardboard.Api.IsTriggerPressed)
         {
             _gazedAtObject?.SendMessage("OnPointerClick");
+            ct++;
         }
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Mouse1) || Input.GetKeyDown(KeyCode.Joystick1Button1))
         {
             _gazedAtObject?.SendMessage("OnPointerClick");
+            ct++;
         }
+
+        textbox.text = "Score: " + ct;
+        textboxTime.text = "Time: "+Time.time;
     }
 }

@@ -5,13 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Baloon.unity
     guid: 4812ec05e87b8414abcdfe0d625c0e60
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ColoredFloor.unity
     guid: a6a0e1ff4907c4b468ef41548dbe3d5b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dart.unity
     guid: 357dcc57c45717147929f9ddcdfd37ee
   - enabled: 1

@@ -32,16 +32,20 @@ public class Valid_Light : MonoBehaviour
 
     void excute_after_timer()
     {
-        if (player.CheckColor().color != this.GetComponent<MeshRenderer>().material.color)
+        if(player.canFall)
         {
-            player.fall = true;
-        }
+            if (player.CheckColor().color != this.GetComponent<MeshRenderer>().material.color)
+            {
+                player.fall = true;
+                player.serialController.SendSerialMessage("A");//lose condition
+            }
 
-        //Debug.Log("player= " + player.CheckColor().color + ", panel= " + this.GetComponent<MeshRenderer>().material.color);
-        groundScript.Get_inside_children();
-        transform.GetComponent<MeshRenderer>().material = groundScript.colors[Random.Range(0, groundScript.colors.Count)];
-        //Debug.Log("executed");
-        StartCoroutine(timer());
+            //Debug.Log("player= " + player.CheckColor().color + ", panel= " + this.GetComponent<MeshRenderer>().material.color);
+            groundScript.Get_inside_children();
+            transform.GetComponent<MeshRenderer>().material = groundScript.colors[Random.Range(0, groundScript.colors.Count)];
+            //Debug.Log("executed");
+            StartCoroutine(timer());
+        }
     }
     IEnumerator timer()
     {

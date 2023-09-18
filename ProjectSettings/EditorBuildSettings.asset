@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 7a3f02b7ed06a914997eeb44dd138aca
+  - enabled: 1
     path: Assets/Scenes/Baloon.unity
     guid: 4812ec05e87b8414abcdfe0d625c0e60
   - enabled: 1
@@ -14,8 +17,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dart.unity
     guid: 357dcc57c45717147929f9ddcdfd37ee
-  - enabled: 1
-    path: Assets/Scenes/Lobby.unity
-    guid: 7a3f02b7ed06a914997eeb44dd138aca
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: cca7020d343f9c6489c0067cab348299, type: 2}

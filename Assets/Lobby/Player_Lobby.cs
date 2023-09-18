@@ -11,17 +11,17 @@ public class Player_Lobby : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Cursor.visible = false;
-        // Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        // rotation.y += Input.GetAxis("Mouse X");
-        // rotation.x += -Input.GetAxis("Mouse Y");
-        // transform.eulerAngles = (Vector2)rotation * sensitivity;
+        rotation.y += Input.GetAxis("Mouse X");
+        rotation.x += -Input.GetAxis("Mouse Y");
+        transform.eulerAngles = (Vector2)rotation * sensitivity;
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;

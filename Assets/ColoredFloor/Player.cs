@@ -5,11 +5,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.XR;
+using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     Vector2 rotation = Vector2.zero;
+    internal SerialController serialController;
     public float sensitivity=0.5f;
     //public Material highlight;
+    [SerializeField] public bool canFall = true;
     public bool fall = false;
     public PostProcessVolume postProcessing;
     Vignette vignetteEffect;
@@ -18,12 +21,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
         transform.parent.gameObject.GetComponent<Rigidbody>().useGravity = false;
         postProcessing = postProcessing.GetComponent<PostProcessVolume>();
         postProcessing.profile.TryGetSettings(out vignetteEffect);
         vignetteEffect.active = false;
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        // Cursor.visible = false;
+        // Cursor.lockState = CursorLockMode.Locked;
     }
 
     public bool moving = false;
@@ -33,38 +37,34 @@ public class Player : MonoBehaviour
 
         if (transform.parent.position.y < -4)
         {
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(0);
         }
 
-        //rotation.y += Input.GetAxis("Mouse X");
-        //rotation.x += -Input.GetAxis("Mouse Y");
-        //transform.eulerAngles = (Vector2)rotation * sensitivity;
-
-        //if (transform.eulerAngles.y > 260 && transform.eulerAngles.y < 270)
-        //{
-        //    Vector3 rotationToAdd = new Vector3(0, -10, 0);
-        //    transform.parent.Rotate(rotationToAdd);
-        //    Debug.Log("looking left " + transform.eulerAngles.y);
-        //}
-        //else if (transform.eulerAngles.y <100 && transform.eulerAngles.y > 90)
-        //{
-        //    Vector3 rotationToAdd = new Vector3(0, 10, 0);
-        //    transform.parent.Rotate(rotationToAdd);
-        //    Debug.Log("looking right " + transform.eulerAngles.y);
-
-        //}
-
-
-        if (fall == false)
+        // rotation.y += Input.GetAxis("Mouse X");
+        // rotation.x += -Input.GetAxis("Mouse Y");
+        // transform.eulerAngles = (Vector2)rotation * sensitivity;
+        
+        if(Input.GetKeyDown(KeyCode.Space)){
+            serialController.SendSerialMessage("Vibrate");
+            Debug.Log("Sent Vibrate!");
+        }
+        else if(Input.GetKeyDown(KeyCode.B)){
+            serialController.SendSerialMessage("Stop");
+            Debug.Log("Stop Vibrate!");
+        }
+        if(canFall)
         {
-            vignetteEffect.active = false;
-        }
-        else
-        {
-            vignetteEffect.active = true;
-        }
-
+            if (fall == false)
+            {
+                vignetteEffect.active = false;
+            }
+            else
+            {
+                vignetteEffect.active = true;
+            }
+        
         CheckColor();
+        }
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;

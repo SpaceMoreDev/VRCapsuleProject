@@ -26,6 +26,7 @@ public class CameraPointer : MonoBehaviour
 {
     Vector2 rotation = Vector2.zero;
     public float sensitivity=0.5f;
+    
     private const float _maxDistance = 10;
     private GameObject _gazedAtObject = null;
     public TMP_Text textbox;
@@ -33,8 +34,8 @@ public class CameraPointer : MonoBehaviour
 
     void Start()
     {
-        // Cursor.visible = false;
-        // Cursor.lockState = CursorLockMode.Locked;        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;        
     }
 
     /// <summary>
@@ -46,9 +47,9 @@ public class CameraPointer : MonoBehaviour
         // Casts ray towards camera's forward direction, to detect if a GameObject is being gazed
         // at.
 
-        // rotation.y += Input.GetAxis("Mouse X");
-        // rotation.x += -Input.GetAxis("Mouse Y");
-        // transform.eulerAngles = (Vector2)rotation * sensitivity;
+        rotation.y += Input.GetAxis("Mouse X");
+        rotation.x += -Input.GetAxis("Mouse Y");
+        transform.eulerAngles = (Vector2)rotation * sensitivity;
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
@@ -57,7 +58,7 @@ public class CameraPointer : MonoBehaviour
             if (_gazedAtObject != hit.transform.gameObject)
             {
                 // New GameObject.
-                _gazedAtObject?.SendMessage("OnPointerExit");
+                // _gazedAtObject?.SendMessage("OnPointerExit");
                 _gazedAtObject = hit.transform.gameObject;
                 _gazedAtObject.SendMessage("OnPointerEnter");
             }

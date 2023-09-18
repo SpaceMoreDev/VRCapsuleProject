@@ -10,6 +10,7 @@ public class Player_dart : MonoBehaviour
 {
     Vector2 rotation = Vector2.zero;
     public float sensitivity = 0.5f;
+    internal SerialController serialController;
     //public Material highlight;
     public bool fall = false;
     public PostProcessVolume postProcessing;
@@ -21,21 +22,23 @@ public class Player_dart : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
         transform.parent.gameObject.GetComponent<Rigidbody>().useGravity = false;
         postProcessing = postProcessing.GetComponent<PostProcessVolume>();
         postProcessing.profile.TryGetSettings(out vignetteEffect);
         vignetteEffect.active = false;
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     int ct=0;
     // Update is called once per frame
     void Update()
     {
-        //rotation.y += Input.GetAxis("Mouse X");
-        //rotation.x += -Input.GetAxis("Mouse Y");
-        //transform.eulerAngles = (Vector2)rotation * sensitivity;
+        rotation.y += Input.GetAxis("Mouse X");
+        rotation.x += -Input.GetAxis("Mouse Y");
+        transform.eulerAngles = (Vector2)rotation * sensitivity;
 
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
@@ -56,6 +59,8 @@ public class Player_dart : MonoBehaviour
                 {
                     Destroy(hit.transform.gameObject);
                     ct -= 1;
+                    serialController.SendSerialMessage("A");//lose condition
+                    
                     Debug.Log("ew what is that?");
 
                 }
@@ -68,6 +73,7 @@ public class Player_dart : MonoBehaviour
 
         if (ct < 0)
         {
+            serialController.SendSerialMessage("A");//lose condition
             SceneManager.LoadScene(3);
         }
 

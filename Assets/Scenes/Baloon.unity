@@ -726,6 +726,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 0.5
+  selectLayer:
+    serializedVersion: 2
+    m_Bits: 0
   textbox: {fileID: 1930053620}
   textboxTime: {fileID: 1461243142}
 --- !u!81 &959308589
@@ -1451,6 +1454,18 @@ PrefabInstance:
     - target: {fileID: 546637624614264018, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 927139718348359272, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 969133565144977760, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1475279612107317606, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2982297549570535878, guid: c9cc71f07beb3474ca66547aaf9ab475, type: 3}
       propertyPath: m_Materials.Array.data[0]

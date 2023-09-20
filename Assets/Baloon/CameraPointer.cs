@@ -25,9 +25,9 @@ using TMPro;
 public class CameraPointer : MonoBehaviour
 {
     Vector2 rotation = Vector2.zero;
-    public float sensitivity=0.5f;
-    
-    private const float _maxDistance = 10;
+    public float sensitivity = 0.5f;
+    [SerializeField] LayerMask selectLayer;
+    private const float _maxDistance = 50;
     private GameObject _gazedAtObject = null;
     public TMP_Text textbox;
     public TMP_Text textboxTime;
@@ -52,7 +52,7 @@ public class CameraPointer : MonoBehaviour
         transform.eulerAngles = (Vector2)rotation * sensitivity;
 
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, _maxDistance, selectLayer))
         {
             // GameObject detected in front of the camera.
             if (_gazedAtObject != hit.transform.gameObject)
@@ -71,8 +71,7 @@ public class CameraPointer : MonoBehaviour
         }
 
         // Checks for screen touches.
-        if (Google.XR.Cardboard.Api.IsTriggerPressed)
-        {
+        if (Google.XR.Cardboard.Api.IsTriggerPressed){
             _gazedAtObject?.SendMessage("OnPointerClick");
             ct++;
         }

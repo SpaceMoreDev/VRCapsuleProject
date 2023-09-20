@@ -9,11 +9,12 @@ TagManager:
   - LookL
   - LookR
   - door
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Selectable
   - Water
   - UI
   - 

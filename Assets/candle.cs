@@ -4,23 +4,43 @@ using UnityEngine;
 
 public class candle : MonoBehaviour
 {
+    [SerializeField] private Launcher launcher;
+    public mainPlayer _player;
     public ParticleSystem ps;
     public GameObject doors;
 
-    public void OnPointerEnter()
-    {
-        //stuff
+
+    private void Start() {
+        if(mainPlayer.current == null)
+        {
+            launcher.SpawnedPlayer += Spawned;     
+        }
+        else
+        {
+            Spawned(mainPlayer.current.gameObject);
+        }
     }
 
-    public void OnPointerExit()
+    private void Spawned(GameObject player)
     {
-        //stuff
+        _player = player.GetComponent<mainPlayer>();
+        _player.e_SelectedObject += OnPointerClick;
     }
 
-    public void OnPointerClick()
+    private void OnDestroy() {
+        _player.e_SelectedObject -= OnPointerClick;
+        launcher.SpawnedPlayer -= Spawned; 
+    }
+
+    public void OnPointerClick(GameObject obj)
     {
-        var em = ps.emission;
-        em.enabled = false;
-        doors.SetActive(true);
+        if(obj == this.gameObject)
+        {
+            Debug.Log("clicked on cake!");
+            var em = ps.emission;
+            em.enabled = false;
+            GetComponent<SphereCollider>().enabled = false;
+            doors.SetActive(true);
+        }
     }
 }

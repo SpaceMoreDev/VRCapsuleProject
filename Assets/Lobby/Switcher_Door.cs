@@ -5,24 +5,48 @@ using UnityEngine.SceneManagement;
 
 public class Switcher_Door : MonoBehaviour
 {
-    public int sceneNum = 0;
-    public Material InactiveMaterial;
-    public Material GazedAtMaterial;
-    public Renderer _myRenderer;
+    [SerializeField] private int sceneNum = 0;
+    [SerializeField] private Material InactiveMaterial;
+    [SerializeField] private Material GazedAtMaterial;
+    [SerializeField] private Renderer _myRenderer;
 
-    public void OnPointerEnter()
-    {
-        SetMaterial(true);
+    private mainPlayer _player;
+
+    private void OnEnable() {
+        _player = mainPlayer.current;
+        _player.e_PointerEnter += OnPointerEnter;
+        _player.e_PointerExit += OnPointerExit;
+        _player.e_SelectedObject += OnPointerClick;
     }
 
-    public void OnPointerExit()
-    {
-        SetMaterial(false);
+    private void OnDestroy() {
+        _player.e_PointerEnter -= OnPointerEnter;
+        _player.e_PointerExit -= OnPointerExit;
+        _player.e_SelectedObject -= OnPointerClick;
     }
 
-    public void OnPointerClick()
+    public void OnPointerEnter(GameObject obj)
     {
-         SceneManager.LoadScene(sceneNum);
+        if(obj == this.gameObject)
+        {
+            SetMaterial(true);
+        } 
+    }
+
+    public void OnPointerExit(GameObject obj)
+    {
+        if(obj == this.gameObject)
+        {
+            SetMaterial(false);
+        }
+    }
+
+    public void OnPointerClick(GameObject obj)
+    {
+        if(obj == this.gameObject)
+        {
+            SceneManager.LoadScene(sceneNum);
+        }
     }
 
     private void SetMaterial(bool gazedAt)

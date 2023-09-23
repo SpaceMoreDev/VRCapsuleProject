@@ -26,8 +26,9 @@ public class Player : MonoBehaviour
         postProcessing = postProcessing.GetComponent<PostProcessVolume>();
         postProcessing.profile.TryGetSettings(out vignetteEffect);
         vignetteEffect.active = false;
-        // Cursor.visible = false;
-        // Cursor.lockState = CursorLockMode.Locked;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public bool moving = false;
@@ -40,18 +41,18 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        // rotation.y += Input.GetAxis("Mouse X");
-        // rotation.x += -Input.GetAxis("Mouse Y");
-        // transform.eulerAngles = (Vector2)rotation * sensitivity;
+        rotation.y += Input.GetAxis("Mouse X");
+        rotation.x += -Input.GetAxis("Mouse Y");
+        transform.eulerAngles = (Vector2)rotation * sensitivity;
         
-        if(Input.GetKeyDown(KeyCode.Space)){
-            serialController.SendSerialMessage("Vibrate");
-            Debug.Log("Sent Vibrate!");
-        }
-        else if(Input.GetKeyDown(KeyCode.B)){
-            serialController.SendSerialMessage("Stop");
-            Debug.Log("Stop Vibrate!");
-        }
+        // if(Input.GetKeyDown(KeyCode.Space)){
+        //     serialController.SendSerialMessage("Vibrate");
+        //     Debug.Log("Sent Vibrate!");
+        // }
+        // else if(Input.GetKeyDown(KeyCode.B)){
+        //     serialController.SendSerialMessage("Stop");
+        //     Debug.Log("Stop Vibrate!");
+        // }
         if(canFall)
         {
             if (fall == false)

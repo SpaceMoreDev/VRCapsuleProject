@@ -5,8 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class reset : MonoBehaviour
 {
-    void OnTriggerStay(Collider other)
-    {
-        SceneManager.LoadScene(0);   
+    Transform player;
+
+    private void Start() {
+        player = mainPlayer.current.transform;
+    }
+
+    private void Update() {
+        if(player.position.y < -10)
+        {
+            player.GetComponent<Rigidbody>().useGravity = false;
+            player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            SceneManager.LoadScene(0);
+        }
     }
 }

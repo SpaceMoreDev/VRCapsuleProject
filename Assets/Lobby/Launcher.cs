@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
     public PhotonView prefab_Player;
+    public event Action<GameObject> SpawnedPlayer;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -14,13 +17,18 @@ public class Launcher : MonoBehaviourPunCallbacks
     }
 
     public override void OnConnectedToMaster() {
-        Debug.Log("connected to server");
-        PhotonNetwork.JoinRandomOrCreateRoom();    
+        if(mainPlayer.current == null){
+            Debug.Log("connected to server");
+            PhotonNetwork.JoinRandomOrCreateRoom();    
+        }
     }
     public override void OnJoinedRoom()
     {
-        Debug.Log("joined a room successfully");
-        PhotonNetwork.Instantiate(prefab_Player.name,prefab_Player.transform.position,Quaternion.identity);
+        if(mainPlayer.current == null){
+            Debug.Log("joined a room successfully");
+            GameObject player = PhotonNetwork.Instantiate(prefab_Player.name,prefab_Player.transform.position,Quaternion.identity);
+            SpawnedPlayer?.Invoke(player);
+        }
 
     }
 }

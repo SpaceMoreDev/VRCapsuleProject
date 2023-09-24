@@ -10,7 +10,7 @@ public class ObjectController : MonoBehaviour
     /// The material to use when this object is inactive (not being gazed at).
     /// </summary>
     public Material InactiveMaterial;
-    internal SerialController serialController;
+    // internal SerialController serialController;
     // public TMP_Text text;
     /// <summary>
     /// The material to use when this object is active (gazed at).
@@ -33,7 +33,7 @@ public class ObjectController : MonoBehaviour
     /// </summary>
     public void Start()
     {
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+        // serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
         _startingPosition = transform.parent.localPosition;
         SetMaterial(false);
     }
@@ -82,7 +82,7 @@ public class ObjectController : MonoBehaviour
     public void OnPointerClick()
     {
         TeleportRandomly();
-        serialController.SendSerialMessage("A");
+        mainPlayer.Vibrate();
     }
 
     /// <summary>

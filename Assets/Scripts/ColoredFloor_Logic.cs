@@ -19,7 +19,7 @@ public class ColoredFloor_Logic : MonoBehaviour
 
 
     internal Vignette _vignetteEffect;
-    internal SerialController serialController;
+    // internal SerialController serialController;
 
     private void Start() {
 
@@ -27,7 +27,7 @@ public class ColoredFloor_Logic : MonoBehaviour
         _player.transform.position = transform.position;
         
 
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+        // serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
         _player.GetComponent<Rigidbody>().useGravity = false;
 
         postProcessing = postProcessing.GetComponent<PostProcessVolume>();

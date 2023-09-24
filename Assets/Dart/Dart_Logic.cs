@@ -8,14 +8,14 @@ public class Dart_Logic : MonoBehaviour
 {
     [SerializeField] private TMP_Text textScore;
 
-    internal SerialController serialController;
+    // internal SerialController serialController;
     internal int ct = 0;
     // Start is called before the first frame update
     void Start()
     {
         textScore.text = $"Score: {ct}";
         
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+        // serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
         mainPlayer.current.transform.position = transform.position;
         mainPlayer.current.e_SelectedObject += CheckItemIfBad;
     }
@@ -46,7 +46,7 @@ public class Dart_Logic : MonoBehaviour
     {
         if (ct < 0)
         {
-            serialController.SendSerialMessage("A");//lose condition
+            mainPlayer.Vibrate();
             SceneManager.LoadScene(0);
         }
     }

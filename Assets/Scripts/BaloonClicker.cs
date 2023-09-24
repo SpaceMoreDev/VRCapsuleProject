@@ -35,7 +35,7 @@ public class BaloonClicker : MonoBehaviour
     void Pop(GameObject selectedObj)
     {
         baloon.TeleportRandomly();
-        baloon.serialController.SendSerialMessage("A");
+        mainPlayer.Vibrate();
 
         ct++;
         textboxScore.text = "Score: " + ct;

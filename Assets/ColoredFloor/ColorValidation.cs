@@ -42,7 +42,8 @@ public class ColorValidation : MonoBehaviour
             logic.fall = true;
             logic.moving = false;
             logic._vignetteEffect.active = true;
-            logic.serialController.SendSerialMessage("A");//lose condition
+            mainPlayer.Vibrate();
+            // logic.serialController.SendSerialMessage("A");//lose condition
         }
 
         //Debug.Log("player= " + player.CheckColor().color + ", panel= " + this.GetComponent<MeshRenderer>().material.color);

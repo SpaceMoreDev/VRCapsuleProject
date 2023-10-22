@@ -6,10 +6,12 @@ namespace ReqRep
     {
         [SerializeField] private string host;
         [SerializeField] private string port;
+        [SerializeField] private Data data;
         public static Listener _listener;
 
         private void Start()
         {
+            host = data.ipAddress;
             _listener = new Listener(host, port, HandleMessage);
             // EventManager.Instance.onSendRequest.AddListener(OnClientRequest);
         }

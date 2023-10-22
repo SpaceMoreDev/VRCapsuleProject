@@ -1984,6 +1984,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: door2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5183386108730859476, guid: ab3f8d02a472f064fb24813fa51bfd79, type: 3}
+      propertyPath: sceneNum
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5183386108730859479, guid: ab3f8d02a472f064fb24813fa51bfd79, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.0082574

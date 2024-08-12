@@ -1,4 +1,4 @@
-# VRCapsuleProject
+# VR Capsule Project
 
 this a project aimed at creating a virtual reality birthday celebration experience for sick children in hospitals who are unable to celebrate their birthday with their family in person. The project simulates mini-games and includes voice chat via Photon, allowing children to interact with their family members and friends in real-time.
 
